@@ -4,19 +4,18 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      time: new Date(),
-      display: ""
+      display: new Date().toLocaleTimeString()
     };
   }
   componentDidMount() {
     console.log("mounted");
     this.intervalId = setInterval(
-      () => this.getTimeString(this.state.time),
+      () => this.setState({ display: new Date().toLocaleTimeString() }),
       1000
     );
   }
 
-  getTimeString(d) {
+  /*getTimeString(d) {
     let hrs = d.getHours();
     let suffix = hrs >= 12 ? "PM" : "AM";
     if (hrs > 12) {
@@ -32,7 +31,7 @@ class App extends Component {
     }
     let newTime = hrs + ":" + min + ":" + sec + " " + suffix;
     this.setState({ time: new Date(), display: newTime });
-  }
+  }*/
 
   componentWillUnmount() {
     console.log("unmounted");
